@@ -10,7 +10,7 @@ import * as bcrypt from 'bcryptjs';
 
   const password = await bcrypt.hash('1234', 12);
 
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 30; i++) {
     await userService.save({
       first_name: faker.name.firstName(),
       last_name: faker.name.lastName(),

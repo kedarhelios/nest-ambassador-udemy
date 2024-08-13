@@ -28,10 +28,11 @@ export class AbstractService {
     });
   }
 
-  async find(options) {
+  async find(options: any, relations?: string[]) {
     return this.repository.find({
       select: this.select,
       where: options,
+      relations: relations ?? null,
     });
   }
 

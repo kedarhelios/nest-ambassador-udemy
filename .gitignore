@@ -3,6 +3,7 @@
 /node_modules
 /build
 /.dbdata
+docker-scripts.txt
 
 # Logs
 logs
