@@ -93,8 +93,8 @@ export class AuthController {
   @Patch('/update')
   @UseGuards(AuthGuard)
   async update(@Req() req: Request, @Body() body) {
-    await this.userService.udpate(req.user as number, body);
-    return await this.userService.findOne({ id: req.user as number });
+    await this.userService.udpate(req.user, body);
+    return await this.userService.findOne({ id: req.user });
   }
 
   private async createJwtToken(user_id: number) {

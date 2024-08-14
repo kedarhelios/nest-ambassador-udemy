@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Link } from '../../link/entity/link.entity';
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Product {
@@ -16,4 +17,7 @@ export class Product {
 
   @Column()
   price: number;
+
+  @ManyToMany(() => Product, (product: Product) => product.links)
+  links: Link;
 }

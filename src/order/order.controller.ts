@@ -5,16 +5,18 @@ import {
   Body,
   Patch,
   Param,
-  Delete,
   UseInterceptors,
   ClassSerializerInterceptor,
+  UseGuards,
 } from '@nestjs/common';
 import { OrderService } from './order.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 @Controller('admin/order')
 @UseInterceptors(ClassSerializerInterceptor)
+@UseGuards(AuthGuard)
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
@@ -30,11 +32,11 @@ export class OrderController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.orderService.findOne(+id);
+    return this.orderService.findOne({ id }, ['order_items', 'user_id']);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateOrderDto: UpdateOrderDto) {
-    return this.orderService.udpate(+id, updateOrderDto);
+    return this.orderService.udpate(id, updateOrderDto);
   }
 }

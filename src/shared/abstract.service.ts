@@ -21,10 +21,11 @@ export class AbstractService {
     return this.repository.save(options);
   }
 
-  async findOne(options) {
+  async findOne(options: any, relations?: string[]) {
     return this.repository.findOne({
       select: this.select,
       where: options,
+      relations: relations ?? null,
     });
   }
 
@@ -36,7 +37,7 @@ export class AbstractService {
     });
   }
 
-  async udpate(id: number, options) {
+  async udpate(id: string, options) {
     return this.repository.update(id, options);
   }
 }
